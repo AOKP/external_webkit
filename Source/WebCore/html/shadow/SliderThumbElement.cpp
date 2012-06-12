@@ -203,14 +203,14 @@ void SliderThumbElement::defaultEventHandler(Event* event)
 #endif
     const AtomicString& eventType = event->type();
 
-    if (eventType == eventNames().mousedownEvent && isLeftButton
+    if ((eventType == eventNames().mousedownEvent && isLeftButton)
 #if PLATFORM(ANDROID) && ENABLE(TOUCH_EVENTS)
             || eventType == eventNames().touchstartEvent
 #endif
             ) {
         startDragging();
         return;
-    } else if (eventType == eventNames().mouseupEvent && isLeftButton
+    } else if ((eventType == eventNames().mouseupEvent && isLeftButton)
 #if PLATFORM(ANDROID) && ENABLE(TOUCH_EVENTS)
             || eventType == eventNames().touchendEvent
             || eventType == eventNames().touchcancelEvent
