@@ -33,11 +33,12 @@
 namespace WebCore {
 
 class AudioBuffer;
-    
+
 class AudioProcessingEvent : public Event {
 public:
+    static PassRefPtr<AudioProcessingEvent> create();
     static PassRefPtr<AudioProcessingEvent> create(PassRefPtr<AudioBuffer> inputBuffer, PassRefPtr<AudioBuffer> outputBuffer);
-    
+
     virtual ~AudioProcessingEvent();
 
     virtual bool isAudioProcessingEvent() const;
@@ -46,6 +47,7 @@ public:
     AudioBuffer* outputBuffer() { return m_outputBuffer.get(); }
 
 private:
+    AudioProcessingEvent();
     AudioProcessingEvent(PassRefPtr<AudioBuffer> inputBuffer, PassRefPtr<AudioBuffer> outputBuffer);
 
     RefPtr<AudioBuffer> m_inputBuffer;
