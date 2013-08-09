@@ -81,7 +81,7 @@ AudioDestinationAndroid::AudioDestinationAndroid(AudioSourceProvider& provider, 
 {
     WEBAUDIO_LOGD( "AudioDestinationAndroid: ctor - this: %d, sampleRate: %f", this, sampleRate);
 
-    int afFrameCount = 0;
+    uint32_t afFrameCount = 0;
     android::AudioSystem::getOutputFrameCount(&afFrameCount, AUDIO_STREAM_MUSIC);
 
     m_channel1Buffer = adoptPtr(new AudioFloatArray(afFrameCount));
@@ -90,7 +90,7 @@ AudioDestinationAndroid::AudioDestinationAndroid(AudioSourceProvider& provider, 
     uint32_t afLatency = 0;
     android::AudioSystem::getOutputLatency(&afLatency, AUDIO_STREAM_MUSIC);
 
-    int afSampleRate = 0;
+    uint32_t afSampleRate = 0;
     android::AudioSystem::getOutputSamplingRate(&afSampleRate, AUDIO_STREAM_MUSIC);
 
     WEBAUDIO_LOGD("AudioDestinationAndroid: frameCount: %d, latency: %d, sampleRate: %d", afFrameCount, afLatency, afSampleRate);
@@ -192,7 +192,7 @@ void AudioDestinationAndroid::resume()
 
 float AudioDestination::hardwareSampleRate()
 {
-    int sampleRate = 44100; //Default sample rate supported by device
+    uint32_t sampleRate = 44100; //Default sample rate supported by device
     android::AudioSystem::getOutputSamplingRate(&sampleRate, AUDIO_STREAM_MUSIC);
     return sampleRate;
 }
